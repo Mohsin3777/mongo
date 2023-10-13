@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const{
+    addJson,
  ternoryOperator,
     
  logicalOperator,
@@ -9,6 +10,8 @@ const{
      
  } = require('../controllers/route1controller');
 
+
+ router.post("/addJson",addJson);
  router.get("/ternoryOperator",ternoryOperator);
  router.get("/logicalOperator",logicalOperator);
 

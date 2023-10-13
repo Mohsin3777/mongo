@@ -15,6 +15,9 @@ bio:{
 },
 Hobbies:{
     type:[]
+},
+experience:{
+    type:[]
 }
 
 })

@@ -2,6 +2,186 @@ const mongoose =require('mongoose')
 
 const model1 =require('../models/model1')
 
+const addJson = async(req,res)=>{
+
+  var list=[{
+      "name": "Sita",
+      "age": 25,
+      "Hobbies": [
+        "Walk",
+        "Cricket"
+      ],
+      "identity": {
+        "hasPanCard": false,
+        "hasAdhaarCard": true
+      },
+      "bio": "I am a youtuber",
+      "experience": [
+        {
+          "company": "Spotify",
+          "duration": 3
+        },
+        {
+          "company": "Paytm",
+          "duration": 1
+        }
+      ]
+    },
+    {
+      "name": "Shyam",
+      "age": 11,
+      "Hobbies": [
+        "Walking",
+        "Reading"
+      ],
+      "identity": {
+        "hasPanCard": false,
+        "hasAdhaarCard": true
+      },
+      "bio": "I am a youtuber and actor"
+    },
+    {
+      "name": "Ghanshayam",
+      "age": 11,
+      "Hobbies": [
+        "Walk",
+        "Cricket"
+      ],
+      "identity": {
+        "hasPanCard": false,
+        "hasAdhaarCard": true
+      },
+      "bio": "I am a cook",
+      "experience": [
+        {
+          "company": "Times Internet",
+          "duration": 1
+        },
+        {
+          "company": "1 mg",
+          "duration": 1
+        },
+        {
+          "company": "Apple",
+          "duration": 2
+        }
+      ]
+    },
+    {
+      "name": "Rita",
+      "age": 11,
+      "Hobbies": [
+        "Anime"
+      ],
+      "identity": {
+        "hasPanCard": false,
+        "hasAdhaarCard": true
+      },
+      "bio": "I play games"
+    },
+    {
+      "name": "Ram",
+      "age": 10,
+      "Hobbies": [
+        "Walk",
+        "Cricket"
+      ],
+      "identity": {
+        "hasPanCard": false,
+        "hasAdhaarCard": true
+      },
+      "bio": "I do nothing.",
+      "experience": [
+        {
+          "company": "KPMG",
+          "duration": 1
+        },
+        {
+          "company": "EY",
+          "duration": 1.5
+        },
+        {
+          "company": "TCS",
+          "duration": 0.5
+        }
+      ]
+    },
+    {
+      "name": "Geeta",
+      "age": 12,
+      "Hobbies": [
+        "Gaming",
+        "Cooking"
+      ],
+      "identity": {
+        "hasPanCard": false,
+        "hasAdhaarCard": true
+      },
+      "bio": "I code and play games.",
+      "experience": [
+        {
+          "company": "Spotify",
+          "duration": 1
+        },
+        {
+          "company": "Google",
+          "duration": 3.4
+        }
+      ]
+    },
+    {
+      "name": "Geeta",
+      "bio": "I just code.",
+      "experience": [
+        {
+          "company": "Amazon",
+          "duration": 2
+        },
+        {
+          "company": "Flipkart",
+          "duration": 1
+        }
+      ],
+      "Hobbies": [
+        "Reading",
+        "Walking"
+      ]
+    },
+    {
+      "name": "Akshit",
+      "age": 22,
+      "hobbies": [
+        "TV Shows"
+      ],
+      "hasMacBook": true,
+      "bio": "I am savage boi.",
+      "experience": [
+        {
+          "company": "Amazon",
+          "duration": 2
+        },
+        {
+          "company": "Google",
+          "duration": 3
+        }
+      ]
+    }]
+
+  try {
+
+    const data= await model1.insertMany(list)
+
+      res.status(200).json({data:data})
+  } catch (error) {
+      res.status(400).json({error:error})
+  }
+
+}
+
+
+
+
+
 const ternoryOperator = async(req,res)=>{
 
     var list=[{
@@ -168,6 +348,8 @@ const ternoryOperator = async(req,res)=>{
       }]
 
     try {
+
+    
       //  const data =await  model1.insertMany(list,{writeConcern:{w:0,j:false}})
     
 // const data = await model1.find({age:{$in:[25,22]}})
@@ -259,6 +441,7 @@ const evalutionOperators = async(req,res)=>{
   }
 }
 module.exports ={
+  addJson,
   ternoryOperator,
   logicalOperator,
   existOperators,
