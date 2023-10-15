@@ -3,6 +3,7 @@ const mongoose =require('mongoose')
 const teacherModel =require('../models/teacher')
 const model1 = require('../models/model1')
 const scoreModel = require('../models/score')
+const order = require('../models/order')
 
 
 
@@ -120,8 +121,74 @@ output:{count:{$sum:1},names:{$push:"$name"}}
     }
   }
 
+
+
+  
+  // 65298919fcc9d9d67d3ef0ed
+  // 652989320af897c69875e7fc
+  // 652989406cab6eeb52d1eda7
+//create order with hardcodeind tecaher id
+
+const addOrder = async(req,res)=>{
+  try {
+
+const d =await order({
+  order_number:4,
+  customer_id:"652989406cab6eeb52d1eda7"
+})
+// const data =await teacherModel.find()
+
+
+const data  =await d.save()
+return res.status(200).json({data:data})
+  } catch (error) {
+     return  res.status(400).json({ success:false,error:error})
+  }
+}
+
+
+const lockupOperator = async(req,res)=>{
+  try {
+
+    //left outer join
+const data =await teacherModel.aggregate([{$lookup:{from:"orders",localField:"_id",foreignField:"customer_id",as:"orderDetails"}},])
+// const data =await order.find().populate('customer_id')
+
+
+
+return res.status(200).json({data:data})
+  } catch (error) {
+     return  res.status(400).json({ success:false,error:error})
+  }
+}
+
+
+
+//use project
+const useProject = async(req,res)=>{
+  try {
+
+// use $project
+// const data =await teacherModel.aggregate([{$project:{_id:0}}])
+
+
+//rename username
+const data =await teacherModel.aggregate([{$project:{_id:0,"userName":"$name"}}])
+
+
+
+
+return res.status(200).json({data:data})
+  } catch (error) {
+     return  res.status(400).json({ success:false,error:error})
+  }
+}
+
 module.exports={
     useAggrigate,
     addScore,
-    usebucket
+    usebucket,
+    addOrder,
+    lockupOperator,
+    useProject
 }

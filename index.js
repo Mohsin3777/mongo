@@ -14,10 +14,12 @@ const route2 =require('./src/routes/route2')
 const route3 =require('./src/routes/route3')
 const route4 =require('./src/routes/route4')
 const aggrigate =require('./src/routes/aggrigate')
+const birthday =require('./src/routes/birthday_route')
 app.use("/api/route1", route1);
 app.use("/api/route2", route2);
 app.use("/api/route3", route3);
 app.use("/api/aggrigate", aggrigate);
+app.use("/api/birthday", birthday);
 // Connect to the MongoDB database
 databaseConnection.connect();
 
