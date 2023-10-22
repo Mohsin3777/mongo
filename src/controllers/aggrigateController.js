@@ -68,11 +68,13 @@ const useAggrigate = async(req,res)=>{
 
   //find avg of scores of student whose age is greater then 20
   // its not workong
-  const data =await scoreModel.aggregate([{$group:{_id:null,avgScore:{$avg:{$filter:{
-    input:"$score",
-    as :"scores",
-    cond: {$gt:["$age",18]}
-  }}}}}])
+  // const data =await scoreModel.aggregate([{$group:{_id:null,avgScore:{$avg:{$filter:{
+  //   input:"$score",
+  //   as :"scores",
+  //   cond: {$gt:["$age",18]}
+  // }}}}}])
+
+  const data =await scoreModel.find({$expr:{$and:[{$gt:["$age",15]},{$eq:{"$name":"John"}}]}})
   
   
   return res.status(200).json({data:data})
