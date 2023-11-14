@@ -2,7 +2,9 @@ const router = require("express").Router();
 
 const{
     addHouse,
-    getData
+    getData,
+    thapaCode,
+    practiceWithW3sorce
 
      
  } = require('../controllers/aggrigate_with_harry_code');
@@ -11,6 +13,8 @@ const{
 
  router.post("/addHouse",addHouse);
  router.get("/getData",getData);
+ router.get("/thapaCode",thapaCode);
+ router.get("/practiceWithW3sorce",practiceWithW3sorce);
 
 
 
